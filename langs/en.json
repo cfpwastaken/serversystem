@@ -1,5 +1,6 @@
 {
     "unknown_command": ":woozy_face: I don't know of that command.",
     "command_exec_error": ":woozy_face: There was an error executing that command.",
-    "pong": ":ping_pong: Pong!"
+    "pong": ":ping_pong: Pong! {ms}ms",
+    "command_guild_only": ":x: This command can only be used in a server."
 }

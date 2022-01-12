@@ -1,5 +1,6 @@
 {
     "unknown_command": ":woozy_face: Ich kenne diesen Befehl nicht.",
     "command_exec_error": ":woozy_face: Beim Ausführen des Befehls ist ein Fehler aufgetreten.",
-    "pong": ":ping_pong: Pong!"
+    "pong": ":ping_pong: Pong! {ms}ms",
+    "command_guild_only": ":x: Dieser Befehl ist nur in Servern verfügbar."
 }

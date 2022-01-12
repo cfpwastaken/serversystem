@@ -20,6 +20,7 @@ module.exports.register = (bot) => {
         const lang = langs.get("en");
 
         if(commands[interaction.commandName]) {
+            if(commands[interaction.commandName].guildOnly && !interaction.guildId) return interaction.reply(lang.get("command_guild_only"));
             try {
                 await commands[interaction.commandName].run(bot, interaction, lang);
             } catch (error) {
