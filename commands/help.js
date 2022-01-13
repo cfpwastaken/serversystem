@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
     name: "help",
-    description: "Shows all the available commands, also how are you seeing this?",
+    description: "Shows all the available commands",
     category: "basic",
     hide: true,
     guildOnly: false,

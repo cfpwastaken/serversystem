@@ -5,5 +5,6 @@
     "command_guild_only": ":x: Dieser Befehl ist nur in Servern verfügbar.",
     "help_title": "Hilfe",
     "cleared_messages": ":white_check_mark: {count} Nachrichten wurden gelöscht!",
-    "error_clearing_messages": ":x: Es ist ein Fehler aufgetreten beim Löschen der Nachrichten."
+    "error_clearing_messages": ":x: Es ist ein Fehler aufgetreten beim Löschen der Nachrichten.",
+    "clear_1": "Wie faul muss man sein um einen Bot zu nutzen um eine Nachricht zu löschen?"
 }

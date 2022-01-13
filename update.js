@@ -20,20 +20,18 @@ NUMBER = 10
 
 */
 
-const commands = [
-	new SlashCommandBuilder()
-		.setName('ping')
-		.setDescription('Replies with Pong!').toJSON(),
-	new SlashCommandBuilder()
-		.setName('help')
-		.setDescription('Shows all the available commands').toJSON(),
-	new SlashCommandBuilder()
-		.setName('clear')
-		.setDescription("Bulk delete messages")
-		.addIntegerOption(option =>
-			option.setName("count").setDescription("The amount of messages to delete").setRequired(true).setMinValue(1).setMaxValue(100)
-		).toJSON(),
-];
+const commands = [];
+
+const cmds = require("./commands").loadCommands();
+
+for(const command of Object.values(cmds)) {
+	const opts = {
+		name: command.name,
+		description: command.description,
+		options: command.options || []
+	};
+	commands.push(opts);
+}
 
 // const commands = [{
 // 	name: 'ping',

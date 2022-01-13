@@ -2,15 +2,20 @@ const fs = require("fs");
 const langs = require("./lang");
 
 module.exports.load = (bot) => {
-    bot.commands = {};
+    bot.commands = this.loadCommands();
+}
+
+module.exports.loadCommands = () => {
+    let commands = {};
     // For every file in the commands folder
     fs.readdirSync("./commands/").forEach(file => {
         console.log("[Commands] Loading command: " + file);
         // Require the file
         const command = require(`./commands/${file}`);
         // Add the command to the commands object
-        bot.commands[command.name] = command;
+        commands[command.name] = command;
     });
+    return commands;
 }
 
 module.exports.register = (bot) => {

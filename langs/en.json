@@ -5,5 +5,6 @@
     "command_guild_only": ":x: This command can only be used in a server.",
     "help_title": "Help",
     "cleared_messages": ":white_check_mark: {count} messages have been deleted!",
-    "error_clearing_messages": ":x: There was an error deleting messages."
+    "error_clearing_messages": ":x: There was an error deleting messages.",
+    "clear_1": "How lazy do you have to be to use a bot to delete 1 message?"
 }
