@@ -26,6 +26,14 @@ module.exports.register = (bot) => {
 
         if(bot.commands[interaction.commandName]) {
             if(bot.commands[interaction.commandName].guildOnly && !interaction.guildId) return interaction.reply(lang.get("command_guild_only"));
+            if(bot.commands[interaction.commandName].perms) {
+                // if it is a string
+                if(typeof bot.commands[interaction.commandName].perms === "string" && !interaction.member.permissions.has(bot.commands[interaction.commandName].perms)) return interaction.reply({ content: lang.get("command_no_perms").replace("{perm}", bot.commands[interaction.commandName].perms), ephemeral: true });
+                
+                for(const perm of bot.commands[interaction.commandName].perms) {
+                    if(!interaction.member.permissions.has(perm)) return interaction.reply({ content: lang.get("command_no_perms").replace("{perm}", perm), ephemeral: true });
+                }
+            }
             try {
                 await bot.commands[interaction.commandName].run(bot, interaction, lang);
             } catch (error) {
