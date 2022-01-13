@@ -1,10 +1,58 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
+const { SlashCommandBuilder } = require("@discordjs/builders");
 
-const commands = [{
-	name: 'ping',
-	description: 'Replies with Pong!'
-}];
+/*
+
+https://discord.com/developers/docs/interactions/application-commands
+
+Option types:
+SUB_COMMAND = 1
+SUB_COMMAND_GROUP = 2
+STRING = 3
+INTEGER = 4
+BOOLEAN = 5
+USER = 6
+CHANNEL = 7
+ROLE = 8
+MENTIONABLE = 9
+NUMBER = 10
+
+*/
+
+const commands = [
+	new SlashCommandBuilder()
+		.setName('ping')
+		.setDescription('Replies with Pong!').toJSON(),
+	new SlashCommandBuilder()
+		.setName('help')
+		.setDescription('Shows all the available commands').toJSON(),
+	new SlashCommandBuilder()
+		.setName('clear')
+		.setDescription("Bulk delete messages")
+		.addIntegerOption(option =>
+			option.setName("count").setDescription("The amount of messages to delete").setRequired(true).setMinValue(1).setMaxValue(100)
+		).toJSON(),
+];
+
+// const commands = [{
+// 	name: 'ping',
+// 	description: 'Replies with Pong!'
+// }, {
+// 	name: 'help',
+// 	description: 'Shows all the available commands'
+// }, {
+// 	name: "clear",
+// 	description: "Bulk delete messages",
+// 	options: {
+// 		type: 4,
+// 		name: "count",
+// 		description: "The amount of messages to delete",
+// 		required: true,
+// 		min_value: 1,
+// 		max_value: 100
+// 	}
+// }];
 
 if(!require("fs").existsSync("secrets.json")) {
 	require("fs").writeFileSync("secrets.json", JSON.stringify({

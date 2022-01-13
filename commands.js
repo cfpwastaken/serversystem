@@ -1,15 +1,15 @@
 const fs = require("fs");
 const langs = require("./lang");
-const commands = {};
 
-module.exports.load = () => {
+module.exports.load = (bot) => {
+    bot.commands = {};
     // For every file in the commands folder
     fs.readdirSync("./commands/").forEach(file => {
         console.log("[Commands] Loading command: " + file);
         // Require the file
         const command = require(`./commands/${file}`);
         // Add the command to the commands object
-        commands[command.name] = command;
+        bot.commands[command.name] = command;
     });
 }
 
@@ -19,17 +19,17 @@ module.exports.register = (bot) => {
 
         const lang = langs.get("en");
 
-        if(commands[interaction.commandName]) {
-            if(commands[interaction.commandName].guildOnly && !interaction.guildId) return interaction.reply(lang.get("command_guild_only"));
+        if(bot.commands[interaction.commandName]) {
+            if(bot.commands[interaction.commandName].guildOnly && !interaction.guildId) return interaction.reply(lang.get("command_guild_only"));
             try {
-                await commands[interaction.commandName].run(bot, interaction, lang);
+                await bot.commands[interaction.commandName].run(bot, interaction, lang);
             } catch (error) {
                 console.error(error);
-                interaction.reply(lang.get("command_exec_error").replace("{error}", error));
+                interaction.reply({ content: lang.get("command_exec_error").replace("{error}", error), ephemeral: true });
             }
         } else {
             console.error("[Commands] Unknown command received: " + interaction.commandName);
-            interaction.reply(lang.get("unknown_command"));
+            interaction.reply({ content: lang.get("unknown_command"), ephemeral: true });
         }
     });
 }

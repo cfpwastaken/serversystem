@@ -7,7 +7,7 @@ const commands = require("./commands");
 bot.on("ready", () => {
     console.log("[Discord Bot] Ready!");
     langs.load();
-    commands.load();
+    commands.load(bot);
     commands.register(bot);
 });
 

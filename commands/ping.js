@@ -3,7 +3,7 @@ module.exports = {
     description: "Replies with Pong!",
     category: "basic",
     hide: false,
-    guildOnly: true,
+    guildOnly: false,
     run: async (bot, interaction, lang) => {
         await interaction.reply({ content: lang.get("pong").replace("{ms}", bot.ws.ping) });
     }

@@ -2,5 +2,8 @@
     "unknown_command": ":woozy_face: I don't know of that command.",
     "command_exec_error": ":woozy_face: There was an error executing that command.",
     "pong": ":ping_pong: Pong! {ms}ms",
-    "command_guild_only": ":x: This command can only be used in a server."
+    "command_guild_only": ":x: This command can only be used in a server.",
+    "help_title": "Help",
+    "cleared_messages": ":white_check_mark: {count} messages have been deleted!",
+    "error_clearing_messages": ":x: There was an error deleting messages."
 }
