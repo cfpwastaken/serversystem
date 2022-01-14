@@ -16,7 +16,7 @@ module.exports = {
     ],
     run: async (bot, interaction, lang) => {
         const embed = new Discord.MessageEmbed()
-            .setTitle(interaction.options.getString("title") || ":loudspeaker: News :newspaper:")
+            .setTitle(":loudspeaker: News :newspaper:")
             .setDescription(interaction.options.getString("message"))
             .setColor("RANDOM")
             .setFooter("News");

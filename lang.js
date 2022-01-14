@@ -10,6 +10,14 @@ class Language {
     get(text) {
         return this.data[text];
     }
+    
+    get(text, options) {
+        let message = this.data[text];
+        for(const key in options) {
+            message = message.replace(`{${key}}`, options[key]);
+        }
+        return message;
+    }
 }
 
 module.exports.load = () => {

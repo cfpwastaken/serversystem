@@ -21,8 +21,7 @@ module.exports.loadCommands = () => {
 module.exports.register = (bot) => {
     bot.on("interactionCreate", async interaction => {
         if(!interaction.isCommand()) return;
-
-        const lang = langs.get("en");
+        const lang = interaction.guildId ? langs.get(interaction.guild.preferredLocale.split("-")[0]) : langs.get("en");
 
         if(bot.commands[interaction.commandName]) {
             if(bot.commands[interaction.commandName].guildOnly && !interaction.guildId) return interaction.reply(lang.get("command_guild_only"));

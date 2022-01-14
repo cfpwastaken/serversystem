@@ -8,5 +8,12 @@
     "cleared_messages": ":white_check_mark: {count} Nachrichten wurden gelöscht!",
     "error_clearing_messages": ":x: Es ist ein Fehler aufgetreten beim Löschen der Nachrichten.",
     "clear_1": "Wie faul muss man sein um einen Bot zu nutzen um eine Nachricht zu löschen?",
-    "news_sent": ":white_check_mark: Gesendet!"
+    "news_sent": ":white_check_mark: Gesendet!",
+    "question_sent": ":white_check_mark: Gesendet!",
+    "say_i_know": "Ich weiß.",
+    "say_sent": ":white_check_mark: Gesendet!",
+    "ascii_too_long": ":x: Der Text ist zu lang.",
+    "invalid_time": ":x: Die Zeit ist ungültig.",
+    "timed_out": ":white_check_mark: {user} wurde für {time} Sekunden gesperrt.",
+    "timed_out_reason": ":white_check_mark: {user} wurde für {time} Sekunden gesperrt mit dem Grund: {reason}."
 }

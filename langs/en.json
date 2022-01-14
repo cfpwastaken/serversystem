@@ -8,5 +8,12 @@
     "cleared_messages": ":white_check_mark: {count} messages have been deleted!",
     "error_clearing_messages": ":x: There was an error deleting messages.",
     "clear_1": "How lazy do you have to be to use a bot to delete 1 message?",
-    "news_sent": ":white_check_mark: Sent!"
+    "news_sent": ":white_check_mark: Sent!",
+    "question_sent": ":white_check_mark: Sent!",
+    "say_i_know": "I know.",
+    "say_sent": ":white_check_mark: Sent!",
+    "ascii_too_long": ":x: That ascii art is too long.",
+    "invalid_time": ":x: That is not a valid time.",
+    "timed_out": ":white_check_mark: Timed out {user} for {time}.",
+    "timed_out_reason": ":white_check_mark: Timed out {user} for {time} because {reason}."
 }
