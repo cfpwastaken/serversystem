@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const xp = require("./xp");
 
 module.exports = (bot) => {
-    bot.on("messageCreate", (msg) => {
+    bot.on("messageCreate", async (msg) => {
         if(msg.author.bot) return;
         if(msg.content.startsWith("-eval ")){
             const code = msg.content.substring(6);
@@ -22,24 +22,11 @@ module.exports = (bot) => {
             }
             return;
         }
-        var addXP = Math.floor(Math.random() * 10) + 0;
+        
+        const xpLevel = await require("./xp").addXP(msg.author.id, Math.floor(Math.random() * 10));
 
-        if(!xp[msg.author.id]) {
-            xp[msg.author.id] = {
-                xp: 0,
-                level: 1,
-                reqxp: 100
-            };
-        }
-
-        xp[msg.author.id].xp += addXP;
-
-        if(xp[msg.author.id].xp > xp[msg.author.id].reqxp) {
-            xp[msg.author.id].xp -= xp[msg.author.id].reqxp;
-            xp[msg.author.id].level++;
-            xp[msg.author.id].reqxp = Math.floor(xp[msg.author.id].reqxp * 1.25);
-
-            msg.reply(`You've leveled up to level **${xp[msg.author.id].level}**!`);
+        if(xpLevel != 0) {
+            msg.reply(`You've leveled up to level **${xpLevel}**!`);
         }
     });
 };

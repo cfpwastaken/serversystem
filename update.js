@@ -1,6 +1,6 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { SlashCommandBuilder } = require("@discordjs/builders");
+//const { SlashCommandBuilder } = require("@discordjs/builders");
 
 /*
 
@@ -56,7 +56,13 @@ if(!require("fs").existsSync("secrets.json")) {
 	require("fs").writeFileSync("secrets.json", JSON.stringify({
 		token: "",
 		client_id: "",
-		comment: "Add a guild_id here to only update that guild with update.js"
+		comment: "Add a guild_id here to only update that guild with update.js",
+		mysql: {
+			host: "localhost",
+			user: "root",
+			password: "",
+			database: "serversystem"
+		}
 	}, null, 4));
 	console.log("Please fill in secrets.json and run this script again.");
 	process.exit(2);
