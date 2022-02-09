@@ -30,6 +30,7 @@ for(const command of Object.values(cmds)) {
 		description: command.description,
 		options: command.options || []
 	};
+	if(opts.disabled) continue;
 	commands.push(opts);
 }
 

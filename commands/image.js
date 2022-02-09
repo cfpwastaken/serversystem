@@ -45,6 +45,26 @@ module.exports = {
                 {
                     name: "Jail",
                     value: "jail"
+                },
+                {
+                    name: "Triggered",
+                    value: "trigger"
+                },
+                {
+                    name: "Wanted",
+                    value: "wanted"
+                },
+                {
+                    name: "Wasted",
+                    value: "wasted"
+                },
+                {
+                    name: "Trash",
+                    value: "trash"
+                },
+                {
+                    name: "Deepfry",
+                    value: "deepfry"
                 }
             ]
         },
@@ -75,6 +95,7 @@ module.exports = {
         const user2 = (interaction.options.getUser("user2") || interaction.user).displayAvatarURL({ format: "png", size: 1024 });
         const text = interaction.options.getString("text");
         const type = interaction.options.getString("type");
+        let isGIF = false;
 
         let img;
 
@@ -82,6 +103,7 @@ module.exports = {
             if(!text) return interaction.reply({ content: lang.get("image_text_required"), ephemeral: true });
             img = await canvacord.Canvas[type](text);
         } else {
+            if(type === "trigger") isGIF = true;
             switch(type) {
                 case "burn":
                     img = await canvacord.Canvas.burn(user1, 10);
@@ -96,6 +118,6 @@ module.exports = {
         // const profilepic = interaction.user.displayAvatarURL({format: "png", size: 1024});
         // const img = await canvacord.Canvas.hitler(profilepic);
 
-        interaction.reply({ files: [ new Discord.MessageAttachment(img, "meme.png")] });
+        interaction.reply({ files: [ new Discord.MessageAttachment(img, `meme.${isGIF ? "gif" : "png"}`)] });
     }
 }

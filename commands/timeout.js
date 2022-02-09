@@ -26,6 +26,7 @@ module.exports = {
             required: false
         }
     ],
+    perms: ["MODERATE_MEMBERS"],
     run: async (bot, interaction, lang) => {
         const user = interaction.options.getUser("user");
         const length = interaction.options.getString("length");
