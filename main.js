@@ -21,7 +21,6 @@ function setStatusBasedOnBranch() {
 
         if(typeof stdout === "string") {
             const branch = stdout.trim();
-            console.log(branch);
             if(branch == "main") {
                 bot.user.setPresence({
                     status: "online",
