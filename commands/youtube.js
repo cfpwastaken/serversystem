@@ -28,7 +28,7 @@ module.exports = {
         }
     ],
     run: async (bot, interaction, lang) => {
-        const avatar = (interaction.options.getUser("user1") || interaction.user).displayAvatarURL({ format: "png", size: 1024 });
+        const avatar = (interaction.options.getUser("avatar") || interaction.user).displayAvatarURL({ format: "png", size: 1024 });
         const content = interaction.options.getString("content");
         const username = interaction.options.getString("username");
 
