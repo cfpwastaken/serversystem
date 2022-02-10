@@ -34,7 +34,7 @@ module.exports.register = (bot) => {
                 }
             }
             try {
-                console.log(`[${interaction.author.username}] /${interaction.commandName}`);
+                console.log(`[${interaction.user.username}] /${interaction.commandName}`);
                 await bot.commands[interaction.commandName].run(bot, interaction, lang);
             } catch (error) {
                 console.error(error);
