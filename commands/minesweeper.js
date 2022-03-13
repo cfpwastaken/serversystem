@@ -11,26 +11,39 @@ module.exports = {
       type: 4,
       name: "rows",
       description: "The amount of rows for the game",
-      required: true
+      required: true,
+      min_value: 2,
+      max_value: 20
     },
     {
       type: 4,
       name: "columns",
       description: "The amount of columns for the game",
-      required: true
+      required: true,
+      min_value: 2,
+      max_value: 20
     },
     {
       type: 4,
       name: "mines",
       description: "The amount of mines for the game",
-      required: true
+      required: true,
+      min_value: 1
     }
   ],
   run: async (bot, interaction, lang) => {
+    const rows = interaction.options.getInteger("rows");
+    const columns = interaction.options.getInteger("columns");
+    const mines = interaction.options.getInteger("mines");
+
+    if(rows < 2 || rows > 20 || columns < 2 || columns > 20 || mines < 1) {
+      return interaction.channel.send("No.");
+    }
+
     const ms = new Minesweeper({
-      rows: interaction.options.getInteger("rows"),
-      columns: interaction.options.getInteger("columns"),
-      mines: interaction.options.getInteger("mines"),
+      rows,
+      columns,
+      mines,
       emote: "bomb",
       returnType: "emoji",
       revealFirstCell: true,
@@ -38,6 +51,8 @@ module.exports = {
     });
 
     // console.log(ms.start());
-    interaction.reply(ms.start());
+    const field = ms.start();
+
+    interaction.reply(field ? field : "No.");
   }
 }
