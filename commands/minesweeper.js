@@ -37,11 +37,11 @@ module.exports = {
     const mines = interaction.options.getInteger("mines");
 
     if(rows < 2 || rows > 20 || columns < 2 || columns > 20 || mines < 1) {
-      return interaction.channel.send("No.");
+      return interaction.reply("No.");
     }
 
     if(mines > rows * columns) {
-      return interaction.channel.send("No.");
+      return interaction.reply("No.");
     }
 
     const ms = new Minesweeper({
