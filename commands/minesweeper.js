@@ -40,6 +40,10 @@ module.exports = {
       return interaction.channel.send("No.");
     }
 
+    if(mines > rows * columns) {
+      return interaction.channel.send("No.");
+    }
+
     const ms = new Minesweeper({
       rows,
       columns,
