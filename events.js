@@ -25,7 +25,7 @@ module.exports = (bot) => {
         }
 
         for(const badWord in badWords) {
-            if(msg.content.toLowerCase().matches(new RegExp(badWords[badWord], "g"))) {
+            if(msg.content.toLowerCase().match(new RegExp(badWords[badWord], "g"))) {
                 msg.delete();
                 return;
             }
