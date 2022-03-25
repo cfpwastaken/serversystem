@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const xp = require("./xp");
+const badWords = ["fuck", "shit", "piss off", "dick", "asshole", "bitch", "bastard", "wixxer", "wichs", "noob", "nub"]
 
 module.exports = (bot) => {
     bot.on("messageCreate", async (msg) => {
@@ -21,6 +22,13 @@ module.exports = (bot) => {
                 msg.channel.send({ embeds: [embed] });
             }
             return;
+        }
+
+        for(const badWord in badWords) {
+            if(msg.content.toLowerCase().matches(new RegExp(badWords[badWord], "g"))) {
+                msg.delete();
+                return;
+            }
         }
         
         const xpLevel = await require("./xp").addXP(msg.author.id, Math.floor(Math.random() * 10));
