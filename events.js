@@ -25,10 +25,19 @@ module.exports = (bot) => {
         }
 
         for(const badWord in badWords) {
+            const embed = new Discord.MessageEmbed()
+            .setTitle("Oh no");
+            let desc = msg.content;
             if(msg.content.toLowerCase().match(new RegExp(badWords[badWord], "g"))) {
                 msg.delete();
-                return;
+                // set the description to the messages with the detected words in bold
+                const censoredWord = "*".repeat(badWords[badWord].length);
+                desc = desc.toLowerCase().replace(new RegExp(badWords[badWord], "g"), `${censoredWord}`);
             }
+            embed.setDescription("```" + desc + "```");
+            embed.setColor("#ff0000");
+            msg.channel.send({ embeds: [embed] });
+            return;
         }
         
         const xpLevel = await require("./xp").addXP(msg.author.id, Math.floor(Math.random() * 10));
