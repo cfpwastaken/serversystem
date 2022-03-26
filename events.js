@@ -25,10 +25,12 @@ module.exports = (bot) => {
         }
 
         for(const badWord in badWords) {
+            let containsBadWord = false;
             const embed = new Discord.MessageEmbed()
             .setTitle("Oh no");
             let desc = msg.content;
             if(msg.content.toLowerCase().match(new RegExp(badWords[badWord], "g"))) {
+                containsBadWord = true;
                 msg.delete();
                 // set the description to the messages with the detected words in bold
                 const censoredWord = "*".repeat(badWords[badWord].length);
@@ -36,7 +38,7 @@ module.exports = (bot) => {
             }
             embed.setDescription("```" + desc + "```");
             embed.setColor("#ff0000");
-            msg.channel.send({ embeds: [embed] });
+            if(containsBadWord) msg.channel.send({ embeds: [embed] });
             return;
         }
         
