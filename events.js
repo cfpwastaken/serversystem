@@ -41,9 +41,10 @@ module.exports = (bot) => {
         if(msg.content.startsWith("-recheck ")) {
             const messageID = msg.content.split(" ")[1];
             const message = await msg.channel.messages.fetch(messageID);
+            msg.delete();
             const badWordCheck = check(message.content);
             if(badWordCheck.containsBadWord) {
-                msg.delete();
+                message.delete();
                 const embed = new Discord.MessageEmbed()
                     .setTitle("Oh no")
                     .setDescription(message.author.tag + "```" + badWordCheck.censored + "```")
