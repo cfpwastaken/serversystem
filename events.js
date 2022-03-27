@@ -1,6 +1,20 @@
 const Discord = require("discord.js");
 const xp = require("./xp");
-const badWords = ["fuck", "shit", "piss off", "dick", "asshole", "bitch", "bastard", "wixxer", "wichs", "noob", "nub"]
+const badWords = ["fuck", "shit", "piss off", "dick", "asshole", "bitch", "bastard", "wixxer", "wichs", "noob", "nub", "ratio", "didn't ask", "stay mad", "cry about it", "negative iq", "your opinion is wrong", "get a life", "touch grass"]
+
+function check(content) {
+    let containsBadWord = false;
+    let censored = content;
+    for(const badWord in badWords) {
+        if(censored.toLowerCase().match(new RegExp(badWords[badWord], "g"))) {
+            containsBadWord = true;
+            // set the description to the messages with the detected words in bold
+            const censoredWord = "*".repeat(badWords[badWord].length);
+            censored = censored.toLowerCase().replace(new RegExp(badWords[badWord], "g"), `${censoredWord}`);
+        }
+    }
+    return {containsBadWord, censored};
+}
 
 module.exports = (bot) => {
     bot.on("messageCreate", async (msg) => {
@@ -24,22 +38,28 @@ module.exports = (bot) => {
             return;
         }
 
-        for(const badWord in badWords) {
-            let containsBadWord = false;
-            const embed = new Discord.MessageEmbed()
-            .setTitle("Oh no");
-            let desc = msg.content;
-            if(msg.content.toLowerCase().match(new RegExp(badWords[badWord], "g"))) {
-                containsBadWord = true;
+        if(msg.content.startsWith("-recheck ")) {
+            const messageID = msg.content.split(" ")[1];
+            const message = await msg.channel.messages.fetch(messageID);
+            const badWordCheck = check(message.content);
+            if(badWordCheck.containsBadWord) {
                 msg.delete();
-                // set the description to the messages with the detected words in bold
-                const censoredWord = "*".repeat(badWords[badWord].length);
-                desc = desc.toLowerCase().replace(new RegExp(badWords[badWord], "g"), `${censoredWord}`);
+                const embed = new Discord.MessageEmbed()
+                    .setTitle("Oh no")
+                    .setDescription(message.author.tag + "```" + badWordCheck.censored + "```")
+                    .setColor("#ff0000");
+                msg.channel.send({ embeds: [embed] });
             }
-            embed.setDescription("```" + desc + "```");
-            embed.setColor("#ff0000");
-            if(containsBadWord) msg.channel.send({ embeds: [embed] });
-            return;
+        }
+
+        const badWordCheck = check(msg.content);
+        if(badWordCheck.containsBadWord) {
+            msg.delete();
+            const embed = new Discord.MessageEmbed()
+                .setTitle("Oh no")
+                .setDescription(msg.author.tag + "```" + badWordCheck.censored + "```")
+                .setColor("#ff0000");
+            msg.channel.send({ embeds: [embed] });
         }
         
         const xpLevel = await require("./xp").addXP(msg.author.id, Math.floor(Math.random() * 10));
