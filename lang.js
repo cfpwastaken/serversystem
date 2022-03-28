@@ -28,6 +28,13 @@ module.exports.load = () => {
     });
 }
 
+module.exports.loadSilent = () => {
+    fs.readdirSync("./langs/").forEach(file => {
+        const lang = require(`./langs/${file}`);
+        langs[path.parse(file).name] = lang;
+    });
+}
+
 module.exports.get = (lang) => {
     return new Language(langs[lang] ? langs[lang] : "en");
 }
