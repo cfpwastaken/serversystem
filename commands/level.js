@@ -8,8 +8,17 @@ module.exports = {
     category: "xp",
     hide: false,
     guildOnly: true,
+    options: [
+        {
+            type: 6,
+            name: "user",
+            description: "The user to show the level of",
+            required: false
+        }
+    ],
     run: async (bot, interaction, lang) => {
-        const userXP = await xp.get(interaction.user.id);
+        const user = interaction.options.getUser("user") || interaction.user;
+        const userXP = await xp.get(user.id, interaction.guild.id);
         const card = new canvacord.Rank()
             .setUsername(interaction.user.username)
             .setDiscriminator(interaction.user.discriminator)
