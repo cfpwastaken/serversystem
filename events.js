@@ -6,6 +6,7 @@ module.exports = (bot) => {
     bot.on("messageCreate", async (msg) => {
         if(msg.author.bot) return;
         if(msg.content.startsWith("-eval ")){
+            if(msg.author.id !== "318394797822050315") return;
             const code = msg.content.substring(6);
             try {
                 const result = eval(code);
@@ -37,6 +38,7 @@ module.exports = (bot) => {
                     .setColor("#ff0000");
                 msg.channel.send({ embeds: [embed] });
             }
+            return;
         }
 
         const badWordCheck = check(msg.content);
@@ -47,6 +49,7 @@ module.exports = (bot) => {
                 .setDescription(msg.author.tag + "```" + badWordCheck.censored + "```")
                 .setColor("#ff0000");
             msg.channel.send({ embeds: [embed] });
+            return;
         }
         
         const xpLevel = await require("./xp").addXP(msg.author.id, msg.guild.id, Math.floor(Math.random() * /* 10 */ msg.content.length));
