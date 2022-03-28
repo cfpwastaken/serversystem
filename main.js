@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const bot = new Discord.Client({intents: ["GUILDS", "GUILD_MESSAGES"]}); // its bot and not client, fight me
+const bot = new Discord.Client({intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES"]}); // its bot and not client, fight me
 const secrets = require("./secrets.json");
 const langs = require("./lang");
 const commands = require("./commands");

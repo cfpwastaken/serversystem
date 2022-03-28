@@ -18,14 +18,17 @@ module.exports = {
     ],
     run: async (bot, interaction, lang) => {
         const user = interaction.options.getUser("user") || interaction.user;
+        const member = interaction.guild.members.cache.get(user.id);
+        console.log(member.presence);
         const userXP = await xp.get(user.id, interaction.guild.id);
         const card = new canvacord.Rank()
-            .setUsername(interaction.user.username)
-            .setDiscriminator(interaction.user.discriminator)
+            .setUsername(user.username)
+            .setDiscriminator(user.discriminator)
             .setLevel(userXP.level)
             .setCurrentXP(userXP.xp)
             .setRequiredXP(userXP.reqxp)
-            .setAvatar(interaction.user.displayAvatarURL({format: "png", size: 1024}));
+            .setStatus(member.presence.status, true)
+            .setAvatar(user.displayAvatarURL({format: "png", size: 1024}));
         
         const img = await card.build();
 
