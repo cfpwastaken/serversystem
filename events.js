@@ -49,7 +49,7 @@ module.exports = (bot) => {
             msg.channel.send({ embeds: [embed] });
         }
         
-        const xpLevel = await require("./xp").addXP(msg.author.id, msg.guild.id, Math.floor(Math.random() * 10));
+        const xpLevel = await require("./xp").addXP(msg.author.id, msg.guild.id, Math.floor(Math.random() * /* 10 */ msg.content.length));
 
         if(xpLevel != 0) {
             msg.reply(`You've leveled up to level **${xpLevel}**!`);
