@@ -6,6 +6,11 @@ const db = mysql.createConnection({
     password: secrets.mysql.password,
     database: secrets.mysql.database
 })
+db.on("end", () => {
+    console.log("[MySQL] Reconnecting...");
+    db.connect();
+    console.log("[MySQL] Reconnected!");
+})
 console.log("[MySQL] Connecting...");
 db.connect();
 console.log("[MySQL] Connected!");
