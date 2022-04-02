@@ -2,7 +2,8 @@ const badWords = ["fuck", "shit", "piss off", "dick", "asshole", "bitch", "basta
 
 module.exports = function check(content) {
   let containsBadWord = false;
-  let censored = content;
+  // remove invisible characters and diacritics from the string as they can be used to bypass the bad word check
+  let censored = content.normalize("NFD").replace(/[^\u0000-\u007E]/g, "").replace(/[\u0300-\u036f]/g, '');
   for(const badWord in badWords) {
       if(censored.toLowerCase().match(new RegExp(badWords[badWord], "g"))) {
           containsBadWord = true;
