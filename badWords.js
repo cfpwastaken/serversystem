@@ -1,6 +1,7 @@
 const badWords = ["fuck", "shit", "piss off", "dick", "asshole", "bitch", "bastard", "wixxer", "wichs", "noob", "nub", "ratio", "didn't ask", "stay mad", "cry about it", "negative iq", "your opinion is wrong", "get a life", "touch grass", "n00b"]
 const bypassWords = {
   "¢": "c",
+  ".": "",
 }
 
 module.exports = function check(content) {
