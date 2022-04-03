@@ -1,4 +1,4 @@
-const badWords = ["fuck", "shit", "piss off", "dick", "asshole", "bitch", "bastard", "wixxer", "wichs", "noob", "nub", "ratio", "didn't ask", "stay mad", "cry about it", "negative iq", "your opinion is wrong", "get a life", "touch grass", "n00b"]
+const badWords = ["fuck", "piss off", "dick", "asshole", "bitch", "bastard", "wixxer", "wichs", "noob", "nub", "ratio", "didn't ask", "stay mad", "cry about it", "negative iq", "your opinion is wrong", "get a life", "touch grass", "n00b", "arschloch", "hure", "loser", "fotze"]
 const bypassWords = {
   "¢": "c",
   ".": "",
